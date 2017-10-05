@@ -10,13 +10,31 @@ char input;
 do{
 
 //Ask the user for which file to turn into greyscale inside a menu similar to the gorcery manager menu
-std::cout << "=== Greyscale Image manager ===\n" << "(A)dd an image to turn Greyscale\n";
+std::cout << "\n=== Greyscale Image manager ===\n" << "(A)dd an image to turn Greyscale (.bmp images only)\n";
 std::cout << "(I)nstructions on Greyscale manager\n" << "(Q)uit Greyscale manager\n";
 std::cin >> input;
+
+Bitmap image;
+Pixel rgb;
+std::string title;
 
 if (input == 'a' || input =='A'){
 
 //Make a 2-D matrix of the photo
+
+std::cout << "Please type the name of the image you would like to greyscale:\n";
+std::cin >> title;
+image.open(title);
+
+if (image.isImage() == 0){
+    
+}
+else if (image.isImage() == 1){
+    std::cout << "That file isn't a .bmp format. Please enter a different file.\n";
+}
+
+
+
 
 /*
 Analyze every pixel in the bitmap using a 'for' loop that looks at the color of the pixels
