@@ -28,10 +28,34 @@ image.open(title);
 std::vector <std::vector <Pixel> > bmp;
 
 if (image.isImage() == 1){
-   bmp = image.toPixelMatrix();
-   std::cout << title << " has been loaded.\n";
-   std::cout << "It is " << bmp[0].size();
-   std::cout << " wide and " << bmp.size() << " pixels high\n";
+    bmp = image.toPixelMatrix();
+    std::cout << title << " has been loaded.\n";
+    std::cout << "It is " << bmp[0].size();
+    std::cout << " wide and " << bmp.size() << " pixels high\n";
+
+    for (int rodex = 0; rodex < bmp.size(); rodex++){
+        int tempRed;
+        int tempBlue;
+        int tempGreen;
+        int avg;
+        for (int coldex = 0; coldex < bmp[0].size(); coldex++){
+            rgb = bmp[rodex][coldex];
+            tempRed = rgb.red;
+            tempBlue = rgb.blue;
+            tempGreen = rgb.green;
+            avg = tempRed + tempBlue + tempGreen;
+            avg = avg / 3;
+            rgb.red = avg;
+            rgb.blue = avg;
+            rgb.green = avg;
+            bmp[rodex][coldex] = rgb;
+        }
+    }
+    
+    image.fromPixelMatrix(bmp);
+    image.save("oldtimey.bmp");
+    std::cout << "Conversion done\n";
+
 }
 else if (image.isImage() == 0){
     std::cout << "That file isn't a .bmp format. Please enter a different file.\n";
