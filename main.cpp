@@ -25,11 +25,14 @@ if (input == 'a' || input =='A'){
 std::cout << "Please type the name of the image you would like to greyscale:\n";
 std::cin >> title;
 image.open(title);
+std::vector <std::vector <Pixel> > bmp;
 
-if (image.isImage() == 0){
-    
+if (image.isImage() == 1){
+   bmp = image.toPixelMatrix();
+   std::cout << "Rows: " <<bmp.size();
+   std::cout << "\nColumns: " << bmp[0].size();
 }
-else if (image.isImage() == 1){
+else if (image.isImage() == 0){
     std::cout << "That file isn't a .bmp format. Please enter a different file.\n";
 }
 
