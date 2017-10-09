@@ -58,8 +58,7 @@ if (input == 'n' || input == 'N'){
                 rgb.green = avg;
                 bmp[rodex][coldex] = rgb;
             }
-        }
-    
+        } 
         image.fromPixelMatrix(bmp);
         image.save("oldtimey.bmp");
         std::cout << "Conversion done\n";
@@ -84,7 +83,7 @@ else if (input == 'f' || input == 'F'){
             int avg;
             for (int coldex = 0; coldex < bmp[0].size(); coldex++){
                 
-                randomNum = rand() % 1000;
+                randomNum = rand() % 5;
 
                 if (randomNum == 0){
                     rgb = bmp[rodex][coldex];
@@ -106,8 +105,7 @@ else if (input == 'f' || input == 'F'){
                     bmp[rodex][coldex] = rgb;
                 }
             }
-        }
-    
+        } 
         image.fromPixelMatrix(bmp);
         image.save("oldtimegrainy.bmp");
         std::cout << "Conversion done\n";
@@ -127,21 +125,36 @@ else if (input == 'b' || input == 'B'){
             int tempRed;
             int tempBlue;
             int tempGreen;
-            int avg;
+            int avg; 
             for (int coldex = 0; coldex < bmp[0].size(); coldex++){
-                rgb = bmp[rodex][coldex];
-                tempRed = rgb.red;
-                tempBlue = rgb.blue;
-                tempGreen = rgb.green;
-                avg = tempRed + tempBlue + tempGreen;
-                avg = avg / 3;
-                rgb.red = avg;
-                rgb.blue = avg;
-                rgb.green = avg;
-                bmp[rodex][coldex] = rgb;
-            }
+                if (rodex == 0 || rodex == 2){
+                    rgb = bmp[rodex][coldex];
+                    rgb.red = 0;
+                    rgb.blue = 0;
+                    rgb.green = 0;
+                    bmp[rodex][coldex] = rgb;
+                }
+                if (rodex == 1){
+                    rgb = bmp[rodex][coldex];
+                    rgb.red = 255;
+                    rgb.blue = 255;
+                    rgb.green = 255;
+                    bmp[rodex][coldex] = rgb;
+                }
+                else{
+                    rgb = bmp[rodex][coldex];
+                    tempRed = rgb.red;
+                    tempBlue = rgb.blue;
+                    tempGreen = rgb.green;
+                    avg = tempRed + tempBlue + tempGreen;
+                    avg = avg / 3;
+                    rgb.red = avg;
+                    rgb.blue = avg;
+                    rgb.green = avg;
+                    bmp[rodex][coldex] = rgb;
+                }
+            }        
         }
-    
         image.fromPixelMatrix(bmp);
         image.save("oldtimeborder.bmp");
         std::cout << "Conversion done\n";
