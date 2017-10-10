@@ -127,14 +127,21 @@ else if (input == 'b' || input == 'B'){
             int tempGreen;
             int avg; 
             for (int coldex = 0; coldex < bmp[0].size(); coldex++){
-                if (rodex == 0 || rodex == 2 || coldex == 0 || coldex == 2){
+                if (coldex == 0 || coldex == 2 || coldex == bmp[0].size() - 1 || coldex == bmp[0].size() - 3){
+		    rgb = bmp[rodex][coldex];
+                    rgb.red = 255;
+                    rgb.blue = 255;
+                    rgb.green = 255;
+                    bmp[rodex][coldex] = rgb;
+		}
+		if (rodex == 0 || rodex == 2 || rodex == bmp.size() - 1 || rodex == bmp.size() - 3){
                     rgb = bmp[rodex][coldex];
                     rgb.red = 255;
                     rgb.blue = 255;
                     rgb.green = 255;
                     bmp[rodex][coldex] = rgb;
                 }
-                if (rodex == 1 || coldex == 1){
+                if (rodex == 1 || coldex == 1 || coldex == bmp[0].size() - 2 || rodex == bmp.size() - 2){
                     rgb = bmp[rodex][coldex];
                     rgb.red = 0;
                     rgb.blue = 0;
